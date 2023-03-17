@@ -1,5 +1,5 @@
 import { TaskList } from './components/TaskList'
-import './App.css'
+import './static/styles/App.css'
 
 export default function App() {
   return (
