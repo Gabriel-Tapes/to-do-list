@@ -19,7 +19,7 @@ export const TaskList = ({ title }: TaskListProps) => {
           e.preventDefault()
           setIsOver(true)
         }}
-        onDragExit={e => {
+        onDragLeave={e => {
           e.preventDefault()
           setIsOver(false)
         }}
