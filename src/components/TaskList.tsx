@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './styles/TaskList.css'
+import { Task } from './Task'
 
 interface TaskListProps {
   title: string
@@ -7,10 +8,27 @@ interface TaskListProps {
 
 export const TaskList = ({ title }: TaskListProps) => {
   const [tasks, setTasks] = useState<string[]>([])
+  const [isOver, setIsOver] = useState<boolean>(false)
+
   return (
     <div className="taskList">
       <h2>{title}</h2>
-      <ul>
+      <ul
+        className={isOver ? 'draggingOver' : ''}
+        onDragOver={e => {
+          e.preventDefault()
+          setIsOver(true)
+        }}
+        onDragExit={e => {
+          e.preventDefault()
+          setIsOver(false)
+        }}
+        onDrop={e => {
+          e.preventDefault()
+          setTasks([...tasks, e.dataTransfer.getData('task')])
+          setIsOver(false)
+        }}
+      >
         {tasks.map((task, index) => (
           <Task
             index={index}
@@ -33,25 +51,5 @@ export const TaskList = ({ title }: TaskListProps) => {
         Add Task
       </button>
     </div>
-  )
-}
-
-interface TaskProps {
-  index: number
-  task: string
-  handleRemove: (index: number) => void
-}
-const Task = ({ index, task, handleRemove }: TaskProps) => {
-  return (
-    <li className="task" draggable>
-      <p>{task}</p>
-      <button
-        onClick={() => {
-          handleRemove(index)
-        }}
-      >
-        x
-      </button>
-    </li>
   )
 }

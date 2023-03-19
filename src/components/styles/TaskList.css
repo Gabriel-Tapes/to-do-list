@@ -1,5 +1,5 @@
 .taskList {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #ffffffcc;
   width: 20rem;
   margin: 1.25rem 0.5rem 0.5rem 0.5rem;
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 .taskList h2 {
-  background-color: lightcoral;
+  background-color: #f08080;
   color: #faebd7;
   font-weight: 500;
   width: 100%;
@@ -20,61 +20,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px #00000080;
   cursor: default;
 }
 
 .taskList ul {
   list-style-type: none;
-    min-height: 18.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
-}
-
-.task {
-  font-size: 0.875rem;
-  background-color: white;
-  box-shadow: 0.125rem 0.125rem #00000033;
-  border-radius: 0.25rem;
-  min-width: 6.25rem;
+  min-height: 18.75rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0.25rem 0.75rem;
-  padding: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
 }
 
-.task:hover {
-  cursor: move;
-  box-shadow: 0.25rem 0.25rem #00000033;
-}
-
-.task button {
-  padding: 0.0625rem 0.375rem;
-  font-weight: 200;
-  font-size: 12px;
-  border: none;
-  background-color: transparent;
-}
-
-.task p {
-  padding: 4px; 
-  cursor: text;
-  font-weight: 500;
-}
-
-.task button:hover {
-  cursor: pointer;
-  border-radius: 50%;
-  background-color: #ff0000c9;
-  box-shadow: 0.0625rem 0.0625rem #00000066;
-  font-weight: 400;
+.taskList ul.draggingOver {
+  border: 2px dashed #ffffffbe;
+  background-color: #ff50ff7e;
 }
 
 .taskList > button {
-  background-color: rgba(200, 200, 200, 0.6);
+  background-color: #c8c8c899;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -82,7 +47,7 @@
   border: none;
   border-radius: 2px;
   min-height: 25px;
-  background: linear-gradient(to right, rgba(200, 200, 200, 0.6) 50%, lightcoral 50%);
+  background: linear-gradient(to right, #c8c8c899 50%, #f08080 50%);
   background-size: 200%;
   background-position: left bottom;
   transition: 600ms;
