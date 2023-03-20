@@ -4,9 +4,9 @@ import './static/styles/App.css'
 export default function App() {
   return (
     <div className="toDoList">
-      <TaskList title="To Do" />
-      <TaskList title="Doing" />
-      <TaskList title="Done" />
+      <TaskList title="To Do" id="toDo" />
+      <TaskList title="Doing" id="doing" />
+      <TaskList title="Done" id="done" />
     </div>
   )
 }

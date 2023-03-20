@@ -1,17 +1,26 @@
-import { useState } from 'react'
-import './styles/TaskList.css'
+import { useEffect, useState } from 'react'
 import { Task } from './Task'
+import './styles/TaskList.css'
 
 interface TaskListProps {
   title: string
+  id: string
 }
 
-export const TaskList = ({ title }: TaskListProps) => {
+export const TaskList = ({ title, id }: TaskListProps) => {
   const [tasks, setTasks] = useState<string[]>([])
   const [isOver, setIsOver] = useState<boolean>(false)
 
+  useEffect(() => {
+    const storageTasks = localStorage.getItem(id)
+    if (storageTasks && tasks.length < JSON.parse(storageTasks).length)
+      setTasks(JSON.parse(storageTasks))
+    else if (storageTasks && tasks.length > JSON.parse(storageTasks).length)
+      localStorage.setItem(id, JSON.stringify(tasks))
+  }, [localStorage.getItem(id), tasks])
+
   return (
-    <div className="taskList">
+    <div className="taskList" id={id}>
       <h2>{title}</h2>
       <ul
         className={isOver ? 'draggingOver' : ''}
@@ -35,7 +44,14 @@ export const TaskList = ({ title }: TaskListProps) => {
             key={index}
             task={task}
             handleRemove={(index: number) => {
-              setTasks(tasks.filter((_, taskIndex) => taskIndex !== index))
+              setTasks(tasks => {
+                const allTasks = tasks.filter(
+                  (_, taskIndex) => taskIndex !== index
+                )
+
+                localStorage.setItem(id, JSON.stringify(allTasks))
+                return allTasks
+              })
             }}
           />
         ))}
